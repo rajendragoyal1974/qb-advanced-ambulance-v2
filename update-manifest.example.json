@@ -1,6 +1,6 @@
 {
-  "version": "2.6.1",
-  "changelog": "Added a dedicated Test and Scan Pricing tab with automatic package price recalculation.",
+  "version": "2.6.2",
+  "changelog": "Fixed predefined Tests and Scans not appearing in the Package and Pricing pages.",
   "files": [
     {
       "path": "client/main.lua",

@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'Codex'
 description 'QBCore Advanced Ambulance Job V2 with modern NUI'
-version '2.6.1'
+version '2.6.2'
 
 ui_page 'html/index.html'
 

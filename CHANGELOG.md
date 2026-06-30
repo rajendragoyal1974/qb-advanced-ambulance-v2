@@ -2,6 +2,14 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.6.2 - 2026-06-30
+
+- Fixed predefined Tests and Scans not appearing in Packages and Pricing.
+- Added runtime synchronization for missing test-price catalog rows.
+- Preserved prices previously edited by EMS.
+- Added explicit default prices for all predefined tests and scans.
+- Kept Imaging services separated as Scans in the package editor.
+
 ## 2.6.1 - 2026-06-30
 
 - Added a dedicated Test And Scan Pricing tab to the EMS tablet.

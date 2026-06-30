@@ -207,8 +207,20 @@ QBCore.Functions.CreateCallback('qa-ambulance:server:GetPatientServices', functi
     end)
 end)
 
+local function EnsureTestPriceCatalog()
+    for testId, definition in pairs(Config.Healthcare.tests) do
+        MySQL.insert.await('INSERT INTO ambulance_test_prices (test_id, label, category, price, active) VALUES (?, ?, ?, ?, 1) ON DUPLICATE KEY UPDATE label = VALUES(label), category = VALUES(category)', {
+            testId,
+            definition.label,
+            definition.category,
+            tonumber(definition.price) or 250
+        })
+    end
+end
+
 QBCore.Functions.CreateCallback('qa-ambulance:server:GetPackageAdmin', function(source, cb)
     if not IsAmbulance(source) then cb({ packages = {}, tests = {} }) return end
+    EnsureTestPriceCatalog()
     local packages = MySQL.query.await('SELECT * FROM ambulance_health_packages ORDER BY is_custom ASC, name ASC') or {}
     local tests = MySQL.query.await('SELECT * FROM ambulance_test_prices ORDER BY category ASC, label ASC') or {}
     cb({ packages = ApplyPackageDiscounts(DecodeServiceRows(packages)), tests = tests })
