@@ -1,0 +1,19 @@
+{
+  "version": "2.5.2",
+  "changelog": "Example release. Replace URLs with raw HTTPS links from your release host.",
+  "files": [
+    {
+      "path": "client/main.lua",
+      "url": "https://raw.githubusercontent.com/rajendragoyal1974/qb-advanced-ambulance-v2/main/client/main.lua"
+    },
+    {
+      "path": "server/main.lua",
+      "url": "https://raw.githubusercontent.com/rajendragoyal1974/qb-advanced-ambulance-v2/main/server/main.lua"
+    },
+    {
+      "path": "fxmanifest.lua",
+      "url": "https://raw.githubusercontent.com/rajendragoyal1974/qb-advanced-ambulance-v2/main/fxmanifest.lua"
+    }
+  ]
+}
+
