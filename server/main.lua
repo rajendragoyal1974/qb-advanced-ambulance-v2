@@ -117,10 +117,22 @@ local function InsertHealthReport(Target, Medic, procedureType, procedureId, def
         findings, summary = BuildTestFindings(procedureId, Target)
     end
 
-    MySQL.insert('INSERT INTO ambulance_health_reports (citizenid, patient_name, doctor_citizenid, doctor_name, procedure_type, procedure_name, category, summary, findings, doctor_notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', {
-        Target.PlayerData.citizenid, PlayerName(Target), Medic.PlayerData.citizenid, PlayerName(Medic), procedureType,
-        definition.label, definition.category or 'Surgery', summary, json.encode(findings), tostring(notes or ''):sub(1, 2000)
-    }, function(reportId)
+    local doctorNotes = string.sub(tostring(notes or ''), 1, 2000)
+    local parameters = {
+        Target.PlayerData.citizenid,
+        PlayerName(Target),
+        Medic.PlayerData.citizenid,
+        PlayerName(Medic),
+        procedureType,
+        definition.label,
+        definition.category or 'Surgery',
+        summary,
+        json.encode(findings),
+        doctorNotes
+    }
+    local query = 'INSERT INTO ambulance_health_reports (citizenid, patient_name, doctor_citizenid, doctor_name, procedure_type, procedure_name, category, summary, findings, doctor_notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+
+    MySQL.insert(query, parameters, function(reportId)
         if callback then callback(reportId) end
     })
 end
