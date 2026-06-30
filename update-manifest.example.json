@@ -1,0 +1,18 @@
+{
+  "version": "2.5.0",
+  "changelog": "Example release. Replace URLs with raw HTTPS links from your release host.",
+  "files": [
+    {
+      "path": "client/main.lua",
+      "url": "https://raw.githubusercontent.com/YOUR_ACCOUNT/YOUR_REPOSITORY/main/client/main.lua"
+    },
+    {
+      "path": "server/main.lua",
+      "url": "https://raw.githubusercontent.com/YOUR_ACCOUNT/YOUR_REPOSITORY/main/server/main.lua"
+    },
+    {
+      "path": "fxmanifest.lua",
+      "url": "https://raw.githubusercontent.com/YOUR_ACCOUNT/YOUR_REPOSITORY/main/fxmanifest.lua"
+    }
+  ]
+}

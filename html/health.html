@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care</title>
+    <link rel="stylesheet" href="health.css">
+</head>
+<body>
+    <header>
+        <img src="assets/medical.svg" alt="">
+        <div><span>Patient portal</span><h1>Health Care</h1></div>
+        <button id="refresh" aria-label="Refresh health care data" title="Refresh">&#8635;</button>
+    </header>
+    <main>
+        <section class="summary"><strong id="reportCount">0</strong><span>Medical reports available</span></section>
+        <nav id="phoneTabs">
+            <button class="active" data-page="book">Book</button>
+            <button data-page="bookings">Bookings</button>
+            <button data-page="reports">Reports</button>
+            <button data-page="invoices">Invoices</button>
+        </nav>
+
+        <section id="book" class="phone-page active">
+            <div id="packages" class="reports"><p class="empty">Loading packages...</p></div>
+        </section>
+        <section id="bookings" class="phone-page">
+            <div id="bookingList" class="reports"><p class="empty">No bookings.</p></div>
+        </section>
+        <section id="reports" class="phone-page reports"><p class="empty">Loading reports...</p></section>
+        <section id="invoices" class="phone-page">
+            <div id="invoiceList" class="reports"><p class="empty">No invoices.</p></div>
+        </section>
+
+        <dialog id="bookingDialog">
+            <form id="bookingForm" method="dialog">
+                <h2 id="bookingPackageName">Book package</h2>
+                <input id="bookingPackageId" type="hidden">
+                <label>Hospital or pharmacy<select id="bookingLocation" required></select></label>
+                <label>Payment<select id="bookingPayment" required><option value="card">Card</option><option value="cash">Cash</option><option value="bank">Bank account</option><option value="hospital">Pay at hospital</option></select></label>
+                <p id="bookingMessage" class="empty"></p>
+                <div class="dialog-actions"><button value="cancel">Cancel</button><button id="confirmBooking" value="default">Confirm booking</button></div>
+            </form>
+        </dialog>
+    </main>
+    <script src="health.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMS Command</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section id="death" class="death hidden">
+        <div class="pulse-ring"></div>
+        <div class="death-panel">
+            <span class="eyebrow">Medical emergency</span>
+            <h1>You are unconscious</h1>
+            <p id="deathText">EMS has been notified. Hold still and wait for help.</p>
+            <div class="timer">
+                <span id="deathTimer">05:00</span>
+                <small id="respawnHint">Respawn unlocks soon</small>
+            </div>
+        </div>
+    </section>
+
+    <section id="alertStack" class="alerts"></section>
+
+    <main id="tablet" class="tablet hidden">
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="assets/medical.svg" alt="">
+                <div>
+                    <strong>EMS Command</strong>
+                    <span id="unitName">Unit</span>
+                </div>
+            </div>
+            <button class="nav active" data-tab="overview">Overview</button>
+            <button class="nav" data-tab="patient">Patient</button>
+            <button class="nav" data-tab="clinical">Clinical</button>
+            <button class="nav" data-tab="bookings">Bookings</button>
+            <button class="nav" data-tab="locations">Locations</button>
+            <button class="nav" data-tab="packages">Packages</button>
+            <button class="nav" data-tab="records">Records</button>
+            <button class="nav" data-tab="billing">Billing</button>
+            <button id="close" class="close">Close</button>
+        </aside>
+
+        <section class="content">
+            <header class="topbar">
+                <div>
+                    <span class="eyebrow">On-duty medical console</span>
+                    <h2 id="doctorName">Doctor</h2>
+                </div>
+                <div class="status-pill">
+                    <span class="dot"></span>
+                    <span id="dutyStatus">Available</span>
+                </div>
+            </header>
+
+            <section id="overview" class="tab active">
+                <div class="metric-grid">
+                    <article>
+                        <span>Unit</span>
+                        <strong id="callsign">EMS</strong>
+                    </article>
+                    <article>
+                        <span>Grade</span>
+                        <strong id="grade">Cadet</strong>
+                    </article>
+                    <article>
+                        <span>Patient</span>
+                        <strong id="patientName">No patient</strong>
+                    </article>
+                </div>
+                <div class="panel">
+                    <h3>Fast Actions</h3>
+                    <div class="actions">
+                        <button id="reviveBtn">Revive</button>
+                        <button id="treatBtn">Treat Wounds</button>
+                        <button id="recordsBtn">Load Records</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="patient" class="tab">
+                <div class="patient-card">
+                    <div class="avatar">+</div>
+                    <div>
+                        <span class="eyebrow">Current patient</span>
+                        <h3 id="patientTitle">No patient selected</h3>
+                        <p id="patientMeta">Use /patient [id] near a patient to load details.</p>
+                    </div>
+                </div>
+                <div class="vitals">
+                    <div><span>Status</span><strong id="patientStatus">Unknown</strong></div>
+                    <div><span>Citizen ID</span><strong id="citizenId">-</strong></div>
+                    <div><span>Server ID</span><strong id="serverId">-</strong></div>
+                </div>
+            </section>
+
+            <section id="records" class="tab">
+                <div class="panel">
+                    <h3>Patient Records</h3>
+                    <div id="recordsList" class="records empty">No records loaded.</div>
+                </div>
+            </section>
+
+            <section id="clinical" class="tab">
+                <div class="clinical-grid">
+                    <div class="panel">
+                        <h3>Diagnostic Test</h3>
+                        <label>Test<select id="testSelect"></select></label>
+                        <label>Clinical notes<textarea id="testNotes" rows="3" placeholder="Symptoms and reason for test"></textarea></label>
+                        <button id="runTestBtn" class="primary-command">Start Test</button>
+                    </div>
+                    <div class="panel">
+                        <h3>Surgical Procedure</h3>
+                        <label>Procedure<select id="surgerySelect"></select></label>
+                        <label>Operative notes<textarea id="surgeryNotes" rows="3" placeholder="Indication and operative plan"></textarea></label>
+                        <button id="runSurgeryBtn" class="danger-command">Begin Surgery</button>
+                    </div>
+                </div>
+                <div class="panel report-panel">
+                    <div class="panel-heading"><h3>Clinical Reports</h3><button id="healthReportsBtn">Refresh</button></div>
+                    <div id="healthReportsList" class="records empty">Select a patient and load reports.</div>
+                </div>
+            </section>
+
+            <section id="billing" class="tab">
+                <form id="billingForm" class="panel">
+                    <h3>Create Medical Bill</h3>
+                    <label>
+                        Amount
+                        <input id="billAmount" type="number" min="1" value="750">
+                    </label>
+                    <label>
+                        Notes
+                        <textarea id="billNotes" rows="4" placeholder="Treatment notes"></textarea>
+                    </label>
+                    <button type="submit">Send Bill</button>
+                </form>
+            </section>
+
+            <section id="bookings" class="tab">
+                <div class="panel-heading page-heading">
+                    <div><span class="eyebrow">Patient services</span><h3>Health Package Queue</h3></div>
+                    <button id="refreshBookingsBtn">Refresh</button>
+                </div>
+                <div id="bookingQueue" class="booking-list empty">No active bookings.</div>
+            </section>
+
+            <section id="locations" class="tab">
+                <div class="clinical-grid">
+                    <form id="locationForm" class="panel compact-form">
+                        <h3>Add Service Location</h3>
+                        <p class="muted">The current doctor position is saved when this form is submitted.</p>
+                        <label>Name<input id="locationName" maxlength="100" required placeholder="Vespucci Pharmacy"></label>
+                        <label>Type<select id="locationType"><option value="pharmacy">Pharmacy</option><option value="hospital">Hospital</option></select></label>
+                        <button type="submit">Save Current Location</button>
+                    </form>
+                    <div class="panel">
+                        <div class="panel-heading"><h3>Configured Locations</h3><button id="refreshLocationsBtn">Refresh</button></div>
+                        <div id="serviceLocations" class="location-list empty">No locations configured.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="packages" class="tab">
+                <div class="package-admin-grid">
+                    <div class="panel">
+                        <div class="panel-heading"><h3>Health Packages</h3><button id="newPackageBtn">New</button></div>
+                        <div id="packageAdminList" class="admin-list empty">No packages loaded.</div>
+                    </div>
+                    <form id="packageForm" class="panel compact-form">
+                        <input id="packageId" type="hidden">
+                        <div class="panel-heading"><h3>Package Editor</h3><strong id="packageSalePrice">$0</strong></div>
+                        <label>Name<input id="packageName" maxlength="100" required></label>
+                        <label>Description<textarea id="packageDescription" maxlength="255" rows="2"></textarea></label>
+                        <div class="inline-fields">
+                            <label>Discount %<input id="packageDiscount" type="number" min="0" max="90" step="0.5" value="0"></label>
+                            <label class="check-label"><input id="packageActive" type="checkbox" checked> Available in app</label>
+                        </div>
+                        <span class="muted">Base price from selected tests: <strong id="packageBasePrice">$0</strong></span>
+                        <div id="packageTests" class="test-selector"></div>
+                        <div class="booking-actions"><button type="submit">Save Package</button><button id="deletePackageBtn" type="button" class="danger-command">Delete Custom</button></div>
+                    </form>
+                </div>
+                <div class="panel test-price-panel">
+                    <div class="panel-heading"><div><h3>Test And Scan Pricing</h3><span class="muted">Package totals update from these prices.</span></div><button id="refreshPackagesBtn">Refresh</button></div>
+                    <div id="testPriceList" class="price-grid empty">No tests loaded.</div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
