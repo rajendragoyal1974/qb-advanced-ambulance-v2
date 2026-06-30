@@ -124,7 +124,7 @@ Version 2.3.0 automatically creates and upgrades package-related tables at start
 
 The server updater checks on startup and every 60 minutes, prints colored status in the FiveM console, downloads newer files, and restarts the resource after a successful installation.
 
-Host an update manifest based on `update-manifest.example.json`, then add this before the resource ensure line in `server.cfg`:
+Host the included `update-manifest.json`, then add this before the resource ensure line in `server.cfg`:
 
 ```cfg
 set qa_ambulance_update_url "https://your-domain.example/update-manifest.json"
