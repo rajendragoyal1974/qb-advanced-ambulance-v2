@@ -369,6 +369,8 @@ end)
 local function RegisterHealthcareApp()
     if healthcareAppRegistered or not Config.Healthcare.lbPhone or GetResourceState('lb-phone') ~= 'started' then return end
     Wait(700)
+    exports['lb-phone']:RemoveCustomApp(Config.Healthcare.appIdentifier)
+    Wait(150)
     local success, errorMessage = exports['lb-phone']:AddCustomApp({
         identifier = Config.Healthcare.appIdentifier,
         name = 'Health Care',
@@ -376,8 +378,8 @@ local function RegisterHealthcareApp()
         developer = 'EMS',
         defaultApp = true,
         size = 184,
-        ui = GetCurrentResourceName() .. '/html/health.html',
-        icon = 'https://cfx-nui-' .. GetCurrentResourceName() .. '/html/assets/medical.svg',
+        ui = GetCurrentResourceName() .. '/html/health.html?v=' .. Config.Healthcare.appVersion,
+        icon = 'https://cfx-nui-' .. GetCurrentResourceName() .. '/html/assets/medical.svg?v=' .. Config.Healthcare.appVersion,
         fixBlur = true,
         onOpen = function()
             QBCore.Functions.TriggerCallback('qa-ambulance:server:GetPatientServices', function(data)

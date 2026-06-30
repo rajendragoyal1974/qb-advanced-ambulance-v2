@@ -223,6 +223,23 @@ QBCore.Functions.CreateCallback('qa-ambulance:server:GetPackageAdmin', function(
     EnsureTestPriceCatalog()
     local packages = MySQL.query.await('SELECT * FROM ambulance_health_packages ORDER BY is_custom ASC, name ASC') or {}
     local tests = MySQL.query.await('SELECT * FROM ambulance_test_prices ORDER BY category ASC, label ASC') or {}
+    local present = {}
+    for _, test in ipairs(tests) do present[test.test_id] = true end
+    for testId, definition in pairs(Config.Healthcare.tests) do
+        if not present[testId] then
+            tests[#tests + 1] = {
+                test_id = testId,
+                label = definition.label,
+                category = definition.category,
+                price = definition.price or 250,
+                active = 1
+            }
+        end
+    end
+    table.sort(tests, function(left, right)
+        if left.category == right.category then return left.label < right.label end
+        return left.category < right.category
+    end)
     cb({ packages = ApplyPackageDiscounts(DecodeServiceRows(packages)), tests = tests })
 end)
 

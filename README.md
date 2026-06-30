@@ -1,6 +1,6 @@
 # QBCore Advanced Ambulance Job V2
 
-Current version: `2.7.0`. See `CHANGELOG.md` for the complete release history.
+Current version: `2.7.1`. See `CHANGELOG.md` for the complete release history.
 
 Modern EMS/ambulance resource for QBCore servers with the default QBCore Pillbox preset and an optional Octavista Vespucci EMS configuration.
 

@@ -1,6 +1,6 @@
 {
-  "version": "2.7.0",
-  "changelog": "Redesigned the LB Phone Health Care app with notch-safe spacing and larger typography.",
+  "version": "2.7.1",
+  "changelog": "Forced LB Phone UI refresh and added fallback Test and Scan catalogs.",
   "files": [
     {
       "path": "client/main.lua",

@@ -146,6 +146,7 @@ Config.StatusLabels = {
 Config.Healthcare = {
     lbPhone = true,
     appIdentifier = 'ems-healthcare',
+    appVersion = '2.7.1',
     reportLimit = 50,
     maxPatientDistance = 5.0,
     xrayModels = { 'v_med_xray', 'v_med_xray2' },

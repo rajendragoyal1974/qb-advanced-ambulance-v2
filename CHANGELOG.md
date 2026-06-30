@@ -2,6 +2,14 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.7.1 - 2026-06-30
+
+- Forced LB Phone to replace the existing Health Care custom-app registration after resource updates.
+- Added versioned Health Care HTML, CSS, JavaScript, and icon URLs to bypass CEF cache.
+- Added a server-side predefined Test and Scan fallback when SQL rows are missing.
+- Added a tablet-side Config fallback when the package catalog callback is empty.
+- Fixed empty Test and Scan selection grids after upgrading the resource.
+
 ## 2.7.0 - 2026-06-30
 
 - Redesigned the LB Phone Health Care interface for notched phone frames.

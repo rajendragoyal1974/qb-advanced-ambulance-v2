@@ -217,8 +217,16 @@ function renderPackageAdmin(data) {
 }
 
 async function loadPackageAdmin() {
-    const data = await post('packageAdmin');
-    if (!data) { qbNotify('Unable to load package settings.', 'error'); return; }
+    const fallbackTests = Object.entries(state.tests || {}).map(([testId, definition]) => ({
+        test_id: testId,
+        label: definition.label,
+        category: definition.category,
+        price: Number(definition.price || 250),
+        active: 1
+    }));
+    const data = await post('packageAdmin') || { packages: [], tests: fallbackTests };
+    if (!data.tests?.length) data.tests = fallbackTests;
+    if (!data.tests.length) qbNotify('No Tests or Scans are configured.', 'error');
     renderPackageAdmin(data);
 }
 
