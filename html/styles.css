@@ -412,6 +412,10 @@ select {
 .test-option .procedure-name { grid-column: 1; grid-row: 1; overflow-wrap: anywhere; font-weight: 800; }
 .test-option .procedure-meta { grid-column: 1; grid-row: 2; color: var(--muted); font-size: 10px; }
 .test-price-panel { margin-bottom: 20px; }
+.pricing-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+.pricing-summary article { min-width: 0; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.pricing-summary span { color: var(--muted); font-size: 11px; }
+.pricing-summary strong { display: block; margin-top: 5px; overflow-wrap: anywhere; font-size: 17px; }
 .price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-height: 260px; overflow-y: auto; margin-top: 12px; }
 .price-row { display: grid; grid-template-columns: 1fr 90px 32px; gap: 6px; align-items: center; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); }
 .price-row strong, .price-row span { display: block; }

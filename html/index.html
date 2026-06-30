@@ -37,6 +37,7 @@
             <button class="nav" data-tab="bookings">Bookings</button>
             <button class="nav" data-tab="locations">Locations</button>
             <button class="nav" data-tab="packages">Packages</button>
+            <button class="nav" data-tab="pricing">Pricing</button>
             <button class="nav" data-tab="records">Records</button>
             <button class="nav" data-tab="billing">Billing</button>
             <button id="close" class="close">Close</button>
@@ -191,8 +192,20 @@
                         <div class="booking-actions"><button type="submit">Save Package</button><button id="deletePackageBtn" type="button" class="danger-command">Delete Custom</button></div>
                     </form>
                 </div>
+            </section>
+
+            <section id="pricing" class="tab">
+                <div class="panel-heading page-heading">
+                    <div><span class="eyebrow">Service catalog</span><h3>Test And Scan Pricing</h3></div>
+                    <button id="refreshPackagesBtn">Refresh</button>
+                </div>
+                <div class="pricing-summary">
+                    <article><span>Tests</span><strong id="pricingTestCount">0</strong></article>
+                    <article><span>Scans</span><strong id="pricingScanCount">0</strong></article>
+                    <article><span>Pricing</span><strong>Auto package totals</strong></article>
+                </div>
                 <div class="panel test-price-panel">
-                    <div class="panel-heading"><div><h3>Test And Scan Pricing</h3><span class="muted">Package totals update from these prices.</span></div><button id="refreshPackagesBtn">Refresh</button></div>
+                    <p class="muted">Change a price or availability below. Package base prices are calculated automatically from the selected services.</p>
                     <div id="testPriceList" class="price-grid empty">No tests loaded.</div>
                 </div>
             </section>

@@ -211,6 +211,8 @@ function renderPackageAdmin(data) {
     $('#packageScanOptions').innerHTML = activeProcedures.filter((test) => test.category === 'Imaging').map(optionMarkup).join('') || '<span class="muted">No scans available.</span>';
     $('#testPriceList').className = state.packageAdmin.tests.length ? 'price-grid' : 'price-grid empty';
     $('#testPriceList').innerHTML = state.packageAdmin.tests.map((test) => `<label class="price-row" data-test-id="${escapeHtml(test.test_id)}"><span><strong>${escapeHtml(test.label)}</strong>${escapeHtml(test.category)}</span><input class="test-price" type="number" min="0" max="1000000" value="${Number(test.price)}"><input class="test-active" type="checkbox" ${Number(test.active) ? 'checked' : ''}></label>`).join('') || 'No tests configured.';
+    $('#pricingTestCount').textContent = state.packageAdmin.tests.filter((test) => test.category !== 'Imaging').length;
+    $('#pricingScanCount').textContent = state.packageAdmin.tests.filter((test) => test.category === 'Imaging').length;
     if (state.selectedPackage) selectPackage(state.selectedPackage.id); else resetPackageEditor();
 }
 
@@ -279,7 +281,7 @@ document.querySelectorAll('.nav').forEach((button) => {
     button.addEventListener('click', () => {
         setTab(button.dataset.tab);
         if (button.dataset.tab === 'bookings' || button.dataset.tab === 'locations') loadBookingQueue();
-        if (button.dataset.tab === 'packages') loadPackageAdmin();
+        if (button.dataset.tab === 'packages' || button.dataset.tab === 'pricing') loadPackageAdmin();
     });
 });
 
