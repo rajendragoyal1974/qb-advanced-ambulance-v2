@@ -2,6 +2,15 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.5.1 - 2026-06-30
+
+- Replaced the package procedure checkbox grid with multi-select dropdowns.
+- Added separate Tests and Scans selectors.
+- Added multiple selection support in both dropdowns.
+- Added live selected-item counts.
+- Kept automatic package base-price and discount calculations.
+- Added automatic closing when the other procedure dropdown opens.
+
 ## 2.5.0 - 2026-06-30
 
 - Added an LB Phone-style FiveM console update tracker.

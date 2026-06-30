@@ -1,6 +1,6 @@
 {
-  "version": "2.5.0",
-  "changelog": "Example release. Replace URLs with raw HTTPS links from your release host.",
+  "version": "2.5.1",
+  "changelog": "Added separate multi-select Tests and Scans dropdowns to the EMS package editor.",
   "files": [
     {
       "path": "client/main.lua",

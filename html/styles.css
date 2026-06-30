@@ -399,8 +399,16 @@ select {
 .inline-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: end; }
 .check-label { display: flex; align-items: center; gap: 8px; min-height: 42px; }
 .check-label input { width: 18px; height: 18px; }
-.test-selector { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; max-height: 155px; overflow-y: auto; margin-top: 12px; }
+.procedure-selectors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.multi-dropdown { position: relative; min-width: 0; }
+.multi-dropdown summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); color: var(--text); cursor: pointer; font-size: 12px; font-weight: 800; list-style: none; }
+.multi-dropdown summary::-webkit-details-marker { display: none; }
+.multi-dropdown summary::after { content: "+"; color: var(--teal); font-size: 18px; }
+.multi-dropdown[open] summary::after { content: "-"; }
+.multi-dropdown summary span { margin-left: auto; color: var(--muted); font-size: 10px; font-weight: 600; }
+.multi-options { position: absolute; z-index: 20; top: calc(100% + 5px); left: 0; right: 0; display: grid; gap: 5px; max-height: 210px; padding: 7px; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); box-shadow: 0 14px 36px rgba(0, 0, 0, .35); }
 .test-option { display: flex; align-items: center; gap: 7px; padding: 7px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font-size: 12px; }
+.test-option:hover { border-color: var(--teal); color: var(--text); }
 .test-option input { width: 16px; height: 16px; }
 .test-price-panel { margin-bottom: 20px; }
 .price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-height: 260px; overflow-y: auto; margin-top: 12px; }

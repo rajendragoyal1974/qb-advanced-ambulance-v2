@@ -178,7 +178,16 @@
                             <label class="check-label"><input id="packageActive" type="checkbox" checked> Available in app</label>
                         </div>
                         <span class="muted">Base price from selected tests: <strong id="packageBasePrice">$0</strong></span>
-                        <div id="packageTests" class="test-selector"></div>
+                        <div id="packageTests" class="procedure-selectors">
+                            <details id="testDropdown" class="multi-dropdown">
+                                <summary>Tests <span id="testSelectedCount">0 selected</span></summary>
+                                <div id="packageTestOptions" class="multi-options"></div>
+                            </details>
+                            <details id="scanDropdown" class="multi-dropdown">
+                                <summary>Scans <span id="scanSelectedCount">0 selected</span></summary>
+                                <div id="packageScanOptions" class="multi-options"></div>
+                            </details>
+                        </div>
                         <div class="booking-actions"><button type="submit">Save Package</button><button id="deletePackageBtn" type="button" class="danger-command">Delete Custom</button></div>
                     </form>
                 </div>
