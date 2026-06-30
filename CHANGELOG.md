@@ -2,6 +2,17 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.7.0 - 2026-06-30
+
+- Redesigned the LB Phone Health Care interface for notched phone frames.
+- Added a permanent notch-safe top clearance on every page.
+- Prevented the compact-height layout from moving content beneath the notch.
+- Enlarged the Health Care logo and application title.
+- Enlarged navigation, package, booking, report, invoice, tracking, and dialog text.
+- Enlarged action controls and status badges.
+- Anchored the refresh button in the top-right app header.
+- Preserved independent page scrolling with the larger interface.
+
 ## 2.6.3 - 2026-06-30
 
 - Changed the progress-bar resource dependency from `qb-progressbar` to `progressbar`.

@@ -1,6 +1,6 @@
 {
-  "version": "2.6.3",
-  "changelog": "Changed the manifest dependency from qb-progressbar to progressbar.",
+  "version": "2.7.0",
+  "changelog": "Redesigned the LB Phone Health Care app with notch-safe spacing and larger typography.",
   "files": [
     {
       "path": "client/main.lua",

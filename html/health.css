@@ -10,6 +10,7 @@
     --line: #d7e1e3;
     --red: #c83e52;
     --amber: #a76b09;
+    --notch-clearance: 2.35rem;
 }
 
 [data-theme="dark"] {
@@ -50,31 +51,34 @@ body {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);
     gap: .75rem;
-    padding: max(.75rem, env(safe-area-inset-top)) .8rem max(.65rem, env(safe-area-inset-bottom));
+    padding: max(var(--notch-clearance), calc(env(safe-area-inset-top) + .8rem)) .9rem max(.8rem, env(safe-area-inset-bottom));
 }
 
 header {
     display: grid;
-    grid-template-columns: 2.55rem minmax(0, 1fr) 2.35rem;
-    gap: .65rem;
+    grid-template-columns: 3.2rem minmax(0, 1fr) 2.75rem;
+    gap: .8rem;
     align-items: center;
     min-width: 0;
+    min-height: 3.2rem;
 }
 
-header img { width: 2.55rem; height: 2.55rem; }
+header img { width: 3.2rem; height: 3.2rem; object-fit: contain; }
 header div { min-width: 0; }
-header span { display: block; color: var(--muted); font-size: .65rem; text-transform: uppercase; font-weight: 800; }
-h1 { margin: .05rem 0 0; overflow: hidden; font-size: 1.22rem; text-overflow: ellipsis; white-space: nowrap; }
+header span { display: block; color: var(--muted); font-size: .74rem; text-transform: uppercase; font-weight: 800; }
+h1 { margin: .08rem 0 0; overflow: hidden; font-size: 1.48rem; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
 
 header button {
-    width: 2.35rem;
-    height: 2.35rem;
+    justify-self: end;
+    width: 2.75rem;
+    height: 2.75rem;
     border: 1px solid var(--line);
     border-radius: .45rem;
     background: var(--surface);
     color: var(--teal);
     cursor: pointer;
-    font-size: 1.15rem;
+    font-size: 1.4rem;
+    font-weight: 800;
 }
 
 main {
@@ -96,8 +100,8 @@ main {
     color: #ffffff;
 }
 
-.summary strong { flex: 0 0 auto; font-size: 1.35rem; }
-.summary span { min-width: 0; overflow: hidden; font-size: .72rem; text-overflow: ellipsis; white-space: nowrap; }
+.summary strong { flex: 0 0 auto; font-size: 1.55rem; }
+.summary span { min-width: 0; overflow: hidden; font-size: .82rem; text-overflow: ellipsis; white-space: nowrap; }
 
 nav {
     display: grid;
@@ -108,7 +112,7 @@ nav {
 
 nav button {
     min-width: 0;
-    height: 2.15rem;
+    height: 2.45rem;
     padding: 0 .2rem;
     overflow: hidden;
     border: 1px solid var(--line);
@@ -116,7 +120,7 @@ nav button {
     background: var(--surface);
     color: var(--muted);
     cursor: pointer;
-    font-size: .66rem;
+    font-size: .75rem;
     font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -156,14 +160,14 @@ nav button.active { border-color: var(--teal); background: var(--teal-soft); col
 .invoice h2 {
     margin: 0;
     overflow-wrap: anywhere;
-    font-size: .9rem;
+    font-size: 1.02rem;
     line-height: 1.3;
 }
 
 .meta,
-.empty { color: var(--muted); font-size: .68rem; line-height: 1.45; overflow-wrap: anywhere; }
+.empty { color: var(--muted); font-size: .78rem; line-height: 1.5; overflow-wrap: anywhere; }
 .empty { padding: 1rem; text-align: center; }
-.summary-text { margin: .5rem 0; font-size: .76rem; line-height: 1.45; overflow-wrap: anywhere; }
+.summary-text { margin: .55rem 0; font-size: .86rem; line-height: 1.5; overflow-wrap: anywhere; }
 
 .finding {
     display: grid;
@@ -171,7 +175,7 @@ nav button.active { border-color: var(--teal); background: var(--teal-soft); col
     gap: .55rem;
     padding: .4rem 0;
     border-top: 1px solid var(--line);
-    font-size: .68rem;
+    font-size: .78rem;
 }
 
 .finding span { min-width: 0; overflow-wrap: anywhere; }
@@ -182,40 +186,40 @@ nav button.active { border-color: var(--teal); background: var(--teal-soft); col
     padding: .55rem;
     border-left: .2rem solid var(--teal);
     background: var(--surface-soft);
-    font-size: .68rem;
+    font-size: .78rem;
     line-height: 1.45;
     overflow-wrap: anywhere;
 }
 
-.package p { margin: .45rem 0; color: var(--muted); font-size: .72rem; line-height: 1.45; overflow-wrap: anywhere; }
+.package p { margin: .5rem 0; color: var(--muted); font-size: .82rem; line-height: 1.5; overflow-wrap: anywhere; }
 .package-footer, .invoice-row { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-width: 0; }
 .package-footer { flex-wrap: wrap; }
-.package-footer strong { min-width: 0; color: var(--teal); font-size: .78rem; overflow-wrap: anywhere; }
+.package-footer strong { min-width: 0; color: var(--teal); font-size: .9rem; overflow-wrap: anywhere; }
 .package-footer s { color: var(--muted); font-weight: 500; }
 
 .package button,
 .dialog-actions button {
-    min-height: 2.15rem;
+    min-height: 2.4rem;
     border: 0;
     border-radius: .4rem;
     padding: 0 .72rem;
     background: var(--teal);
     color: #ffffff;
     cursor: pointer;
-    font-size: .7rem;
+    font-size: .8rem;
     font-weight: 800;
 }
 
 .test-list { display: flex; flex-wrap: wrap; gap: .28rem; margin: .5rem 0 .65rem; }
-.test-list span { max-width: 100%; padding: .22rem .38rem; border-radius: .3rem; background: var(--teal-soft); color: var(--teal); font-size: .6rem; overflow-wrap: anywhere; }
+.test-list span { max-width: 100%; padding: .28rem .44rem; border-radius: .3rem; background: var(--teal-soft); color: var(--teal); font-size: .7rem; overflow-wrap: anywhere; }
 
 .tracking { display: grid; gap: .3rem; margin-top: .65rem; }
-.tracking-step { display: grid; grid-template-columns: .7rem minmax(0, 1fr); gap: .4rem; align-items: center; color: var(--muted); font-size: .66rem; line-height: 1.35; }
+.tracking-step { display: grid; grid-template-columns: .75rem minmax(0, 1fr); gap: .45rem; align-items: center; color: var(--muted); font-size: .76rem; line-height: 1.4; }
 .tracking-step::before { content: ""; width: .5rem; height: .5rem; border: .1rem solid var(--line); border-radius: 50%; }
 .tracking-step.done { color: var(--text); font-weight: 700; }
 .tracking-step.done::before { border-color: var(--teal); background: var(--teal); }
 
-.payment-badge { display: inline-block; max-width: 100%; margin-top: .5rem; padding: .24rem .4rem; border-radius: .3rem; background: var(--surface-soft); color: var(--red); font-size: .63rem; font-weight: 800; overflow-wrap: anywhere; }
+.payment-badge { display: inline-block; max-width: 100%; margin-top: .5rem; padding: .28rem .45rem; border-radius: .3rem; background: var(--surface-soft); color: var(--red); font-size: .73rem; font-weight: 800; overflow-wrap: anywhere; }
 .payment-badge.paid { color: var(--teal); }
 
 dialog {
@@ -231,8 +235,8 @@ dialog {
 }
 
 dialog::backdrop { background: rgba(0, 0, 0, .6); }
-dialog h2 { margin: 0 0 .65rem; font-size: .95rem; overflow-wrap: anywhere; }
-dialog label { display: grid; gap: .3rem; margin-top: .6rem; color: var(--muted); font-size: .68rem; }
+dialog h2 { margin: 0 0 .65rem; font-size: 1.08rem; overflow-wrap: anywhere; }
+dialog label { display: grid; gap: .3rem; margin-top: .6rem; color: var(--muted); font-size: .78rem; }
 dialog select { width: 100%; min-height: 2.25rem; border: 1px solid var(--line); border-radius: .4rem; padding: 0 .45rem; background: var(--bg); color: var(--text); }
 .dialog-actions { display: flex; justify-content: flex-end; gap: .4rem; margin-top: .75rem; }
 .dialog-actions button:first-child { background: var(--line); color: var(--text); }
@@ -245,10 +249,10 @@ dialog select { width: 100%; min-height: 2.25rem; border: 1px solid var(--line);
 }
 
 @media (max-height: 35rem) {
-    body { gap: .5rem; padding-top: .55rem; padding-bottom: .45rem; }
-    header img { width: 2.2rem; height: 2.2rem; }
-    header { grid-template-columns: 2.2rem minmax(0, 1fr) 2.2rem; }
-    header button { width: 2.2rem; height: 2.2rem; }
+    body { gap: .5rem; padding-top: max(var(--notch-clearance), calc(env(safe-area-inset-top) + .65rem)); padding-bottom: .45rem; }
+    header img { width: 2.75rem; height: 2.75rem; }
+    header { grid-template-columns: 2.75rem minmax(0, 1fr) 2.5rem; min-height: 2.75rem; }
+    header button { width: 2.5rem; height: 2.5rem; }
     .summary { padding: .5rem .7rem; }
     nav { margin: .45rem 0; }
 }
