@@ -243,8 +243,8 @@ RegisterNetEvent('qa-ambulance:server:SaveHealthPackage', function(data)
     for _, row in ipairs(rows) do basePrice = basePrice + (tonumber(row.price) or 0) end
     if #rows ~= #selected then Notify(src, 'One or more selected tests are disabled.', 'error') return end
 
-    local name = tostring(data.name or ''):sub(1, 100)
-    local description = tostring(data.description or ''):sub(1, 255)
+    local name = string.sub(tostring(data.name or ''), 1, 100)
+    local description = string.sub(tostring(data.description or ''), 1, 255)
     local discount = math.max(0, math.min(tonumber(data.discount) or 0, 90))
     if #name < 3 then Notify(src, 'Package name is too short.', 'error') return end
     local packageId = tonumber(data.id)
@@ -311,7 +311,7 @@ RegisterNetEvent('qa-ambulance:server:AddServiceLocation', function(name, locati
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     if not Player or not IsAmbulance(src) or type(coords) ~= 'table' then return end
-    name = tostring(name or ''):sub(1, 100)
+    name = string.sub(tostring(name or ''), 1, 100)
     locationType = locationType == 'hospital' and 'hospital' or 'pharmacy'
     if #name < 3 then Notify(src, 'Location name is too short.', 'error') return end
     MySQL.insert('INSERT INTO ambulance_service_locations (name, location_type, x, y, z, heading, created_by) VALUES (?, ?, ?, ?, ?, ?, ?)', {
@@ -357,7 +357,7 @@ RegisterNetEvent('qa-ambulance:server:AdvanceBooking', function(bookingId, note)
     if nextStatus == 'samples_collected' then timestampField = ', samples_taken_at = CURRENT_TIMESTAMP' end
     if nextStatus == 'scans_completed' then timestampField = ', scans_taken_at = CURRENT_TIMESTAMP' end
     if nextStatus == 'report_published' then timestampField = ', report_published_at = CURRENT_TIMESTAMP' end
-    local cleanNote = tostring(note or ''):sub(1, 255)
+    local cleanNote = string.sub(tostring(note or ''), 1, 255)
     local changed = MySQL.update.await(('UPDATE ambulance_health_bookings SET status = ?, status_note = ?, assigned_doctor = ?%s WHERE id = ? AND status = ?'):format(timestampField), {
         nextStatus, cleanNote, PlayerName(Medic), booking.id, booking.status
     })

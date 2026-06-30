@@ -2,6 +2,12 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.5.2 - 2026-06-30
+
+- Fixed the server/main.lua parser error near the health report insert parameters.
+- Replaced the inline SQL parameter expression with precomputed variables.
+- Kept the correction inside the existing server/main.lua file.
+
 ## 2.5.1 - 2026-06-30
 
 - Replaced the package procedure checkbox grid with multi-select dropdowns.

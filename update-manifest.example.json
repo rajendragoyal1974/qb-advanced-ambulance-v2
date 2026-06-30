@@ -1,6 +1,6 @@
 {
-  "version": "2.5.1",
-  "changelog": "Added separate multi-select Tests and Scans dropdowns to the EMS package editor.",
+  "version": "2.5.2",
+  "changelog": "Fixed the server/main.lua parser error in health report generation.",
   "files": [
     {
       "path": "client/main.lua",
