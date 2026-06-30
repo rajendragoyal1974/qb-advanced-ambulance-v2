@@ -136,6 +136,10 @@ ensure qb-advanced-ambulance-v2-fixed
 
 Run `emsupdate` in the server console for an immediate check. Players require the `command.emsupdate` ACE permission to run it in game. The interval is measured in minutes with a minimum of 15. Update URLs and file URLs must use HTTPS. The updater refuses unsafe paths and never overwrites `shared/config.lua`.
 
+## GitHub Synchronization
+
+`tools/sync-github.ps1` stages resource changes, creates a timestamped commit when needed, and pushes `main` to `origin`. Configure the private GitHub remote and authentication before scheduling this script.
+
 ## Octavista Vespucci EMS Preset
 
 The active preset is:
