@@ -1,6 +1,6 @@
 {
-  "version": "2.6.0",
-  "changelog": "Redesigned the EMS health package editor with selectable Test and Scan cards.",
+  "version": "2.6.1",
+  "changelog": "Added a dedicated Test and Scan Pricing tab with automatic package price recalculation.",
   "files": [
     {
       "path": "client/main.lua",

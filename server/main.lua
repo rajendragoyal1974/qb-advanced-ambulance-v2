@@ -214,14 +214,35 @@ QBCore.Functions.CreateCallback('qa-ambulance:server:GetPackageAdmin', function(
     cb({ packages = ApplyPackageDiscounts(DecodeServiceRows(packages)), tests = tests })
 end)
 
+local function RecalculateAllPackagePrices()
+    local priceRows = MySQL.query.await('SELECT test_id, price FROM ambulance_test_prices WHERE active = 1') or {}
+    local prices = {}
+    for _, row in ipairs(priceRows) do prices[row.test_id] = tonumber(row.price) or 0 end
+    local packages = MySQL.query.await('SELECT id, tests FROM ambulance_health_packages') or {}
+    for _, package in ipairs(packages) do
+        local selected = json.decode(package.tests or '[]') or {}
+        local activeTests = {}
+        local total = 0
+        for _, testId in ipairs(selected) do
+            if prices[testId] then
+                activeTests[#activeTests + 1] = testId
+                total = total + prices[testId]
+            end
+        end
+        MySQL.update.await('UPDATE ambulance_health_packages SET price = ?, tests = ?, active = IF(? > 0, active, 0) WHERE id = ?', {
+            total, json.encode(activeTests), #activeTests, package.id
+        })
+    end
+end
+
 RegisterNetEvent('qa-ambulance:server:SaveTestPrice', function(testId, price, active)
     local src = source
     if not IsAmbulance(src) or not Config.Healthcare.tests[testId] then return end
     price = math.max(0, math.min(math.floor(tonumber(price) or 0), 1000000))
-    MySQL.update('UPDATE ambulance_test_prices SET price = ?, active = ? WHERE test_id = ?', { price, active and 1 or 0, testId }, function()
-        Notify(src, 'Test price updated.', 'success')
-        TriggerClientEvent('qa-ambulance:client:PackageDataChanged', -1)
-    end)
+    MySQL.update.await('UPDATE ambulance_test_prices SET price = ?, active = ? WHERE test_id = ?', { price, active and 1 or 0, testId })
+    RecalculateAllPackagePrices()
+    Notify(src, 'Service price updated. Package totals recalculated.', 'success')
+    TriggerClientEvent('qa-ambulance:client:PackageDataChanged', -1)
 end)
 
 RegisterNetEvent('qa-ambulance:server:SaveHealthPackage', function(data)

@@ -2,6 +2,15 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.6.1 - 2026-06-30
+
+- Added a dedicated Test And Scan Pricing tab to the EMS tablet.
+- Moved all service price and availability controls out of the package editor.
+- Added separate Test and Scan catalog counts.
+- Added automatic recalculation of every health package after a service price changes.
+- Added automatic removal of disabled services from existing packages.
+- Kept package discounts applied after the recalculated base price.
+
 ## 2.6.0 - 2026-06-30
 
 - Redesigned the EMS health package editor with an advanced procedure catalog.
