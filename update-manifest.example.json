@@ -1,6 +1,6 @@
 {
-  "version": "2.5.2",
-  "changelog": "Fixed the server/main.lua parser error in health report generation.",
+  "version": "2.6.0",
+  "changelog": "Redesigned the EMS health package editor with selectable Test and Scan cards.",
   "files": [
     {
       "path": "client/main.lua",

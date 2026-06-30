@@ -162,6 +162,17 @@ function updatePackageTotals() {
     $('#packageSalePrice').textContent = `$${Math.round(base * (1 - discount / 100)).toLocaleString()}`;
     $('#testSelectedCount').textContent = `${selectedTests} selected`;
     $('#scanSelectedCount').textContent = `${selectedScans} selected`;
+    document.querySelectorAll('.test-option').forEach((card) => {
+        card.classList.toggle('selected', card.querySelector('input').checked);
+    });
+    const selectedLabels = state.packageAdmin.tests
+        .filter((test) => selected.includes(test.test_id))
+        .map((test) => test.label);
+    const currentDescription = $('#packageDescription').value;
+    const baseDescription = currentDescription.split('\nIncluded procedures:')[0].trim();
+    $('#packageDescription').value = selectedLabels.length
+        ? `${baseDescription}${baseDescription ? '\n' : ''}Included procedures: ${selectedLabels.join(', ')}`
+        : baseDescription;
 }
 
 function resetPackageEditor() {
@@ -195,7 +206,7 @@ function renderPackageAdmin(data) {
     $('#packageAdminList').className = state.packageAdmin.packages.length ? 'admin-list' : 'admin-list empty';
     $('#packageAdminList').innerHTML = state.packageAdmin.packages.map((item) => `<button class="admin-package" data-package-id="${Number(item.id)}"><strong>${escapeHtml(item.name)}</strong><span>$${Number(item.sale_price).toLocaleString()} ${Number(item.discount_percent) ? `(${Number(item.discount_percent)}% off)` : ''} &middot; ${Number(item.active) ? 'Available' : 'Hidden'}</span></button>`).join('') || 'No packages configured.';
     const activeProcedures = state.packageAdmin.tests.filter((test) => Number(test.active));
-    const optionMarkup = (test) => `<label class="test-option"><input type="checkbox" value="${escapeHtml(test.test_id)}"><span>${escapeHtml(test.label)} ($${Number(test.price)})</span></label>`;
+    const optionMarkup = (test) => `<label class="test-option"><span class="procedure-name">${escapeHtml(test.label)}</span><span class="procedure-meta">${escapeHtml(test.category)} &middot; $${Number(test.price)}</span><input type="checkbox" value="${escapeHtml(test.test_id)}"></label>`;
     $('#packageTestOptions').innerHTML = activeProcedures.filter((test) => test.category !== 'Imaging').map(optionMarkup).join('') || '<span class="muted">No tests available.</span>';
     $('#packageScanOptions').innerHTML = activeProcedures.filter((test) => test.category === 'Imaging').map(optionMarkup).join('') || '<span class="muted">No scans available.</span>';
     $('#testPriceList').className = state.packageAdmin.tests.length ? 'price-grid' : 'price-grid empty';
@@ -352,14 +363,6 @@ $('#packageAdminList').addEventListener('click', (event) => {
     if (button) selectPackage(button.dataset.packageId);
 });
 $('#packageTests').addEventListener('change', updatePackageTotals);
-document.querySelectorAll('.multi-dropdown').forEach((dropdown) => {
-    dropdown.addEventListener('toggle', () => {
-        if (!dropdown.open) return;
-        document.querySelectorAll('.multi-dropdown').forEach((other) => {
-            if (other !== dropdown) other.open = false;
-        });
-    });
-});
 $('#packageDiscount').addEventListener('input', updatePackageTotals);
 
 $('#testPriceList').addEventListener('change', async (event) => {

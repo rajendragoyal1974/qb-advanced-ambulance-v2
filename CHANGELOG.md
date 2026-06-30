@@ -2,6 +2,16 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.6.0 - 2026-06-30
+
+- Redesigned the EMS health package editor with an advanced procedure catalog.
+- Replaced procedure dropdowns with always-visible Test and Scan cards.
+- Added immediate selected-card highlighting.
+- Added separate selected counts for Tests and Scans.
+- Added procedure category and price information to every card.
+- Added automatic included-procedure text to the package description.
+- Preserved automatic base price, discount, and final price calculations.
+
 ## 2.5.2 - 2026-06-30
 
 - Fixed the server/main.lua parser error near the health report insert parameters.

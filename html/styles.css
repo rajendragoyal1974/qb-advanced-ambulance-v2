@@ -399,17 +399,18 @@ select {
 .inline-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: end; }
 .check-label { display: flex; align-items: center; gap: 8px; min-height: 42px; }
 .check-label input { width: 18px; height: 18px; }
-.procedure-selectors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
-.multi-dropdown { position: relative; min-width: 0; }
-.multi-dropdown summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); color: var(--text); cursor: pointer; font-size: 12px; font-weight: 800; list-style: none; }
-.multi-dropdown summary::-webkit-details-marker { display: none; }
-.multi-dropdown summary::after { content: "+"; color: var(--teal); font-size: 18px; }
-.multi-dropdown[open] summary::after { content: "-"; }
-.multi-dropdown summary span { margin-left: auto; color: var(--muted); font-size: 10px; font-weight: 600; }
-.multi-options { position: absolute; z-index: 20; top: calc(100% + 5px); left: 0; right: 0; display: grid; gap: 5px; max-height: 210px; padding: 7px; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); box-shadow: 0 14px 36px rgba(0, 0, 0, .35); }
-.test-option { display: flex; align-items: center; gap: 7px; padding: 7px; border: 1px solid var(--line); border-radius: 5px; color: var(--muted); font-size: 12px; }
-.test-option:hover { border-color: var(--teal); color: var(--text); }
-.test-option input { width: 16px; height: 16px; }
+.procedure-catalog { display: grid; gap: 12px; margin-top: 12px; }
+.procedure-group { min-width: 0; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: rgba(0, 0, 0, .12); }
+.procedure-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.procedure-heading h4 { margin: 2px 0 0; font-size: 14px; }
+.procedure-heading > strong { color: var(--teal); font-size: 11px; }
+.procedure-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+.test-option { position: relative; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; gap: 4px 8px; min-width: 0; min-height: 64px; padding: 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); color: var(--muted); cursor: pointer; font-size: 11px; transition: border-color .15s ease, background .15s ease, color .15s ease; }
+.test-option:hover { border-color: rgba(70, 219, 194, .6); color: var(--text); }
+.test-option.selected { border-color: var(--teal); background: rgba(70, 219, 194, .14); color: var(--text); box-shadow: inset 0 0 0 1px rgba(70, 219, 194, .15); }
+.test-option input { grid-column: 2; grid-row: 1 / span 2; width: 17px; height: 17px; margin: 0; accent-color: var(--teal); }
+.test-option .procedure-name { grid-column: 1; grid-row: 1; overflow-wrap: anywhere; font-weight: 800; }
+.test-option .procedure-meta { grid-column: 1; grid-row: 2; color: var(--muted); font-size: 10px; }
 .test-price-panel { margin-bottom: 20px; }
 .price-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-height: 260px; overflow-y: auto; margin-top: 12px; }
 .price-row { display: grid; grid-template-columns: 1fr 90px 32px; gap: 6px; align-items: center; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); }

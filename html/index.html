@@ -178,15 +178,15 @@
                             <label class="check-label"><input id="packageActive" type="checkbox" checked> Available in app</label>
                         </div>
                         <span class="muted">Base price from selected tests: <strong id="packageBasePrice">$0</strong></span>
-                        <div id="packageTests" class="procedure-selectors">
-                            <details id="testDropdown" class="multi-dropdown">
-                                <summary>Tests <span id="testSelectedCount">0 selected</span></summary>
-                                <div id="packageTestOptions" class="multi-options"></div>
-                            </details>
-                            <details id="scanDropdown" class="multi-dropdown">
-                                <summary>Scans <span id="scanSelectedCount">0 selected</span></summary>
-                                <div id="packageScanOptions" class="multi-options"></div>
-                            </details>
+                        <div id="packageTests" class="procedure-catalog">
+                            <section class="procedure-group">
+                                <div class="procedure-heading"><div><span class="eyebrow">Clinical services</span><h4>Tests</h4></div><strong id="testSelectedCount">0 selected</strong></div>
+                                <div id="packageTestOptions" class="procedure-card-grid"></div>
+                            </section>
+                            <section class="procedure-group">
+                                <div class="procedure-heading"><div><span class="eyebrow">Diagnostic imaging</span><h4>Scans</h4></div><strong id="scanSelectedCount">0 selected</strong></div>
+                                <div id="packageScanOptions" class="procedure-card-grid"></div>
+                            </section>
                         </div>
                         <div class="booking-actions"><button type="submit">Save Package</button><button id="deletePackageBtn" type="button" class="danger-command">Delete Custom</button></div>
                     </form>
