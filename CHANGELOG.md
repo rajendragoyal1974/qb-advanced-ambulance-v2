@@ -2,6 +2,10 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.6.3 - 2026-06-30
+
+- Changed the progress-bar resource dependency from `qb-progressbar` to `progressbar`.
+
 ## 2.6.2 - 2026-06-30
 
 - Fixed predefined Tests and Scans not appearing in Packages and Pricing.

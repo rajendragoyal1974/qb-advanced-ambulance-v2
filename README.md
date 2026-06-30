@@ -1,6 +1,6 @@
 # QBCore Advanced Ambulance Job V2
 
-Current version: `2.6.2`. See `CHANGELOG.md` for the complete release history.
+Current version: `2.6.3`. See `CHANGELOG.md` for the complete release history.
 
 Modern EMS/ambulance resource for QBCore servers with the default QBCore Pillbox preset and an optional Octavista Vespucci EMS configuration.
 
@@ -34,7 +34,7 @@ Modern EMS/ambulance resource for QBCore servers with the default QBCore Pillbox
 - `qb-phone` is optional for legacy billing mail
 - `qb-management`
 - `qb-inventory`
-- `qb-progressbar`
+- `progressbar`
 - `oxmysql`
 - `LegacyFuel` or replace the fuel export in `client/main.lua`
 - `lb-phone` is optional and required only for the Health Care phone app

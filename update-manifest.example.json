@@ -1,6 +1,6 @@
 {
-  "version": "2.6.2",
-  "changelog": "Fixed predefined Tests and Scans not appearing in the Package and Pricing pages.",
+  "version": "2.6.3",
+  "changelog": "Changed the manifest dependency from qb-progressbar to progressbar.",
   "files": [
     {
       "path": "client/main.lua",
