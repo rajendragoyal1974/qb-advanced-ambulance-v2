@@ -378,7 +378,7 @@ local function RegisterHealthcareApp()
         developer = 'EMS',
         defaultApp = true,
         size = 184,
-        ui = GetCurrentResourceName() .. '/html/health.html?v=' .. Config.Healthcare.appVersion,
+        ui = GetCurrentResourceName() .. '/html/health.html',
         icon = 'https://cfx-nui-' .. GetCurrentResourceName() .. '/html/assets/medical.svg?v=' .. Config.Healthcare.appVersion,
         fixBlur = true,
         onOpen = function()
@@ -642,14 +642,20 @@ RegisterNUICallback('healthReports', function(data, cb)
 end)
 
 RegisterNUICallback('healthRecords', function(_, cb)
+    local replied = false
+    local function reply(data) if replied then return end replied = true cb(data) end
+    SetTimeout(8000, function() reply({}) end)
     QBCore.Functions.TriggerCallback('qa-ambulance:server:GetHealthReports', function(reports)
-        cb(reports)
+        reply(reports or {})
     end)
 end)
 
 RegisterNUICallback('patientServices', function(_, cb)
+    local replied = false
+    local function reply(data) if replied then return end replied = true cb(data) end
+    SetTimeout(8000, function() reply({ packages = {}, locations = {}, bookings = {} }) end)
     QBCore.Functions.TriggerCallback('qa-ambulance:server:GetPatientServices', function(data)
-        cb(data)
+        reply(data or { packages = {}, locations = {}, bookings = {} })
     end)
 end)
 
@@ -674,14 +680,20 @@ RegisterNUICallback('tabletNotify', function(data, cb)
 end)
 
 RegisterNUICallback('bookingQueue', function(_, cb)
+    local replied = false
+    local function reply(data) if replied then return end replied = true cb(data) end
+    SetTimeout(8000, function() reply({ bookings = {}, locations = {} }) Notify('Unable to load bookings from the server.', 'error') end)
     QBCore.Functions.TriggerCallback('qa-ambulance:server:GetBookingQueue', function(data)
-        cb(data)
+        reply(data or { bookings = {}, locations = {} })
     end)
 end)
 
 RegisterNUICallback('packageAdmin', function(_, cb)
+    local replied = false
+    local function reply(data) if replied then return end replied = true cb(data) end
+    SetTimeout(8000, function() reply({ packages = {}, tests = {} }) Notify('Unable to refresh package pricing from the server.', 'error') end)
     QBCore.Functions.TriggerCallback('qa-ambulance:server:GetPackageAdmin', function(data)
-        cb(data)
+        reply(data or { packages = {}, tests = {} })
     end)
 end)
 

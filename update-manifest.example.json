@@ -1,6 +1,6 @@
 {
-  "version": "2.7.1",
-  "changelog": "Forced LB Phone UI refresh and added fallback Test and Scan catalogs.",
+  "version": "2.7.2",
+  "changelog": "Fixed LB Phone NUI routing, callback timeouts, and immediate Test and Scan catalog rendering.",
   "files": [
     {
       "path": "client/main.lua",

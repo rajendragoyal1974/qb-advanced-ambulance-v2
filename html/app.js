@@ -21,12 +21,22 @@ function escapeHtml(value) {
     })[character]);
 }
 
-function post(event, data = {}) {
-    return fetch(`https://${resource}/${event}`, {
+async function post(event, data = {}) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    try {
+        const response = await fetch(`https://${resource}/${event}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-        body: JSON.stringify(data)
-    }).then((response) => response.json()).catch(() => null);
+        body: JSON.stringify(data),
+        signal: controller.signal
+        });
+        return await response.json();
+    } catch (_) {
+        return null;
+    } finally {
+        clearTimeout(timeout);
+    }
 }
 
 function qbNotify(message, type = 'primary') {
@@ -224,7 +234,10 @@ async function loadPackageAdmin() {
         price: Number(definition.price || 250),
         active: 1
     }));
-    const data = await post('packageAdmin') || { packages: [], tests: fallbackTests };
+    if (fallbackTests.length && !state.packageAdmin.tests.length) {
+        renderPackageAdmin({ packages: state.packageAdmin.packages || [], tests: fallbackTests });
+    }
+    const data = await post('packageAdmin') || { packages: state.packageAdmin.packages || [], tests: fallbackTests };
     if (!data.tests?.length) data.tests = fallbackTests;
     if (!data.tests.length) qbNotify('No Tests or Scans are configured.', 'error');
     renderPackageAdmin(data);

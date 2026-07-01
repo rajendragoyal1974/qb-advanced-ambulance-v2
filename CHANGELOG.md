@@ -2,6 +2,13 @@
 
 All notable changes to QBCore Advanced Ambulance Job V2 are recorded here.
 
+## 2.7.2 - 2026-07-01
+
+- Fixed LB Phone requests by explicitly routing `fetchNui` calls to the ambulance resource.
+- Added timeout-safe phone and EMS tablet callbacks with QBCore failure notifications.
+- Made configured test and scan cards render immediately while package data refreshes.
+- Refreshed healthcare app assets and registration to prevent stale, clipped UI builds.
+
 ## 2.7.1 - 2026-06-30
 
 - Forced LB Phone to replace the existing Health Care custom-app registration after resource updates.

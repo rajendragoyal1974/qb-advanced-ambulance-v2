@@ -1,5 +1,13 @@
 let serviceData = { packages: [], locations: [], bookings: [] };
 let reports = [];
+const appResource = typeof globalThis.resourceName === 'string' && globalThis.resourceName
+    ? globalThis.resourceName
+    : 'qb-advanced-ambulance-v2';
+
+function phoneFetch(event, data = {}) {
+    if (typeof globalThis.fetchNui !== 'function') return Promise.reject(new Error('LB Phone bridge unavailable'));
+    return globalThis.fetchNui(event, data, appResource);
+}
 const statusOrder = ['placed', 'awaiting_visit', 'samples_collected', 'scans_completed', 'awaiting_report', 'report_published', 'completed'];
 const statusLabels = {
     placed: 'Order placed',
@@ -82,9 +90,9 @@ function renderAll() {
 }
 
 async function loadData() {
-    if (typeof fetchNui !== 'function') return;
+    if (typeof globalThis.fetchNui !== 'function') return;
     try {
-        const [services, healthReports] = await Promise.all([fetchNui('patientServices', {}), fetchNui('healthRecords', {})]);
+        const [services, healthReports] = await Promise.all([phoneFetch('patientServices'), phoneFetch('healthRecords')]);
         serviceData = services || { packages: [], locations: [], bookings: [] };
         reports = Array.isArray(healthReports) ? healthReports : [];
         renderAll();
@@ -113,7 +121,7 @@ document.querySelector('#packages').addEventListener('click', (event) => {
 
 document.querySelector('#confirmBooking').addEventListener('click', async (event) => {
     event.preventDefault();
-    const result = await fetchNui('createHealthBooking', {
+    const result = await phoneFetch('createHealthBooking', {
         packageId: Number(document.querySelector('#bookingPackageId').value),
         locationId: Number(document.querySelector('#bookingLocation').value),
         paymentMethod: document.querySelector('#bookingPayment').value
@@ -128,7 +136,7 @@ document.querySelector('#bookingList').addEventListener('click', (event) => {
     const button = event.target.closest('[data-route-id]');
     if (!button) return;
     const location = serviceData.locations.find((item) => Number(item.id) === Number(button.dataset.routeId));
-    if (location) fetchNui('serviceWaypoint', { x: location.x, y: location.y });
+    if (location) phoneFetch('serviceWaypoint', { x: location.x, y: location.y });
 });
 
 if (typeof onNuiEvent === 'function') onNuiEvent('services', (payload) => { serviceData = payload.data || serviceData; renderAll(); });
